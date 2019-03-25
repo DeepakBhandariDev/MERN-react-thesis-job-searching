@@ -6,6 +6,17 @@ import { getVacs, deleteVac } from '../actions/vacActions';
 import PropTypes from 'prop-types';
 
 class VacancyApp extends Component {
+
+  static propTypes = {
+    getVacs: PropTypes.func.isRequired,
+    vac: PropTypes.shape({ 
+        id: PropTypes.number,
+        title: PropTypes.string,
+        city: PropTypes.string,
+        sal: PropTypes.string,
+        desc: PropTypes.string }),
+        isAuthenticated: PropTypes.bool
+}
     componentDidMount() {
         this.props.getVacs();
       }  
@@ -21,19 +32,23 @@ class VacancyApp extends Component {
                 
             
             <ListGroup>
-          <TransitionGroup className='shopping-list'>
-            {vacs.map(({ _id, title, city, desc }) => (
+          <TransitionGroup className='vac-app'>
+            {vacs.map(({ _id, title, city,sal, desc }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
-                <ListGroupItem>
-                  <ListGroupItemHeading >{title} <br/> {city}  </ListGroupItemHeading>   
-                  <ListGroupItemText className="list-text"> {desc}</ListGroupItemText>
-                  <Button
+                <ListGroupItem className="lis" >
+                  <ListGroupItemHeading >{title} <br/> {city+","} {"Salary:"}{sal}  </ListGroupItemHeading>   
+                  <ListGroupItemText className="list-text">  {desc} </ListGroupItemText>
+                  {this.props.isAuthenticated ? (
+                    <Button
                       className='remove-btn'
+                      outline
                       color='danger'
                       size='sm'
-                      onClick={this.onDeleteClick.bind(this, _id)}>
+                      onClick={this.onDeleteClick.bind(this, _id)}
+                    >
                       &times;
-                    </Button>   
+                    </Button>
+                  ) : null}
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -43,17 +58,11 @@ class VacancyApp extends Component {
         );
     }
 }
-VacancyApp.propTypes = {
-    getVacs: PropTypes.func.isRequired,
-    vac: PropTypes.shape({ 
-        id: PropTypes.isRequired,
-        title: PropTypes.isRequired,
-        city: PropTypes.string,
-        desc: PropTypes.string })
-}
+
 
 const mapStateToProps = state => ({
-    vac: state.vac
+    vac: state.vac,
+    isAuthenticated: state.auth.isAuthenticated
   });
 
 export default connect(

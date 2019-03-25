@@ -3,21 +3,24 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
-
-const vacs = require('./routes/api/vacs');
+const config = require('config');
 
 
 
 app.use(express.json());
 
 
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
-mongoose.connect(db, { useCreateIndex: true, useNewUrlParser: true })
+mongoose.connect(db, { 
+    useCreateIndex: true,
+    useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
-app.use('/api/vacs', vacs);
+app.use('/api/vacs', require('./routes/api/vacs'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));

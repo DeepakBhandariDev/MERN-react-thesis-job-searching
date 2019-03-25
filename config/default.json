@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://deepak:deepak1@cluster0-slc5c.mongodb.net/test?retryWrites=true",
+    "jwtSecret":"dv_JWTsecret"
+}

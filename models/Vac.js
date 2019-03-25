@@ -15,6 +15,10 @@ const VacSchema = new Schema({
     type: String,
     required: true
   },
+  sal: {
+    type: String,
+    required: true
+  },
   register_date: {
     type: Date,
     default: Date.now
