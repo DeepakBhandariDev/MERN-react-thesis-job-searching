@@ -4,7 +4,18 @@
 
 .App{
   background-color: aqua;
+
 }
+
+img{
+  height: 30%;
+  width: 50% ;
+  align-items: center;
+  margin-left: 20%;
+  
+}
+
+
 
 .list-text{
   margin-left: 2rem;

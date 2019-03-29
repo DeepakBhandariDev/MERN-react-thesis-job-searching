@@ -18,7 +18,8 @@ router.post('/',auth, (req, res)=> {
     title: req.body.title,
     city: req.body.city,
     desc: req.body.desc,
-    sal: req.body.sal
+    sal: req.body.sal,
+    uid: req.body.uid
    });
 
    newVac.save().then(vac => res.json(vac));

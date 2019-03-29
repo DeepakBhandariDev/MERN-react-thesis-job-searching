@@ -22,6 +22,10 @@ const VacSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
+  },
+  uid: {
+    type: String,
+    required: true
   }
 });
 

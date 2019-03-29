@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
+
 class LoginModal extends Component {
   state = {
     modal: false,
@@ -46,6 +47,8 @@ class LoginModal extends Component {
     if (this.state.modal) {
       if (isAuthenticated) {
         this.toggle();
+       
+        
       }
     }
   }
@@ -117,6 +120,7 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
+        
       </div>
     );
   }

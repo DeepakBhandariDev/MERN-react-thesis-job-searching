@@ -19,9 +19,10 @@ class App extends Component {
       <Provider store={store}>
       <div className="App">
         <AppNavBar/>
+       
         <Container>
         <VacModal />
-        <VacancyApp />
+        <VacancyApp/>
         </Container>
         
       </div>

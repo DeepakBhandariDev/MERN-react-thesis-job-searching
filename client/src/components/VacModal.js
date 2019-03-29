@@ -22,10 +22,12 @@ class VacModal extends Component{
     title: "",
     city: "",
     desc: "",
-    sal: ""
+    sal: "",
+    uid: ""
   };
   static propTypes = {
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
+    auth: PropTypes.object.isRequired
   };
   toggle = () => {
     this.setState({
@@ -37,15 +39,25 @@ class VacModal extends Component{
     this.setState({ [e.target.name]: e.target.value });
   
   }
+  Capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  
+  static propTypes = {
+      auth: PropTypes.object.isRequired
+    };
 
   onSubmit = e => {
     e.preventDefault();
+    const { user } = this.props.auth;
+    const nameid = user.name;
     if(this.state.title && this.state.city && this.state.desc){
     const newVac = {
-      title: this.state.title,
-      city: this.state.city,
-      desc: this.state.desc,
-      sal: this.state.sal
+      title: this.Capitalize(this.state.title),
+      city: this.Capitalize(this.state.city),
+      desc: this.Capitalize(this.state.desc),
+      sal: this.state.sal,
+      uid: nameid
     };
     
     // Add item via addItem action
@@ -59,6 +71,7 @@ class VacModal extends Component{
     
     return(
       <div>
+        
         {this.props.isAuthenticated ? (
         <Button
         color='dark'
@@ -68,7 +81,7 @@ class VacModal extends Component{
 
         Add Vacancy</Button>
         ) : (
-          <h4 className='mb-3 ml-4'>All the vacancies available:</h4>
+          <h4 className='mb-3 ml-4'>Job searching made easy!</h4>
         )}
 
 
@@ -121,7 +134,8 @@ class VacModal extends Component{
 
 const mapStateToProps = state => ({
   vac: state.vac,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps,
