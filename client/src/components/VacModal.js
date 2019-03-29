@@ -116,7 +116,7 @@ class VacModal extends Component{
                   type='text'
                   name= 'desc'
                  
-                  placeholder='Add more info like business name and supposed working hours'
+                  placeholder='Contact information and work description'
                   onChange={this.onChange}
                 />
                 <Button color='dark' style={{ marginTop: '2rem' }} block>

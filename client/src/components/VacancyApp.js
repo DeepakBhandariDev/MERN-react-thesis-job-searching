@@ -56,7 +56,7 @@ class VacancyApp extends Component {
   sermit = e => {
     e.preventDefault();
     this.setState({ isSubmitted: true });
-    console.log(this.state.isSubmitted);
+    
     
   };
 
@@ -84,7 +84,7 @@ class VacancyApp extends Component {
                     </ListGroupItemHeading>
                     <ListGroupItemText className="list-text">
                       {" "}
-                      {desc}{" "}
+                      {desc}{" "}<br />{"Ad posted by:" + " " + uid}
                     </ListGroupItemText>
                   </ListGroupItem>
                 </CSSTransition>
@@ -163,10 +163,10 @@ class VacancyApp extends Component {
         </Form>
         <br />
         
-        <img src={jobs} alt="Logo" />
+        
         {this.state.isSubmitted && renderSe}
     
-        
+        <img src={jobs} alt="Logo" />
          
         
       </div>
